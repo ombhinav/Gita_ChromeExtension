@@ -21,28 +21,6 @@ function loadDarkModePreference() {
 }
 
 function getRandomQuote() {
-    // const quotes = [
-    //     {
-    //         sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
-    //         english: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions."
-    //     },
-    //     {
-    //         sanskrit: "योगः कर्मसु कौशलम्।",
-    //         english: "Yoga is skill in action."
-    //     },
-    //     {
-    //         sanskrit: "मा ते सङ्गोऽस्त्वकर्मणि।",
-    //         english: "Do not be attached to inaction."
-    //     },
-    //     {
-    //         sanskrit: "जातस्य हि ध्रुवो मृत्युर्ध्रुवं जन्म मृतस्य च।",
-    //         english: "For one who has taken birth, death is certain; and for one who is dead, birth is certain."
-    //     },
-    //     {
-    //         sanskrit: "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।",
-    //         english: "Whatever action a great man performs, common men follow."
-    //     }
-    // ];
     const quotes = [
         {
             sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
@@ -280,7 +258,9 @@ function setQuote() {
     const quote = getRandomQuote();
     document.getElementById('sanskrit-quote').textContent = quote.sanskrit;
     document.getElementById('english-quote').textContent = quote.english;
+    document.getElementById('chapter-verse').textContent = `Chapter/Verse: ${quote.chapter}:${quote.verse}`;
 }
+
 
 function getRecentSites() {
     // This is a mock function. In a real extension, you would use the Chrome extension API

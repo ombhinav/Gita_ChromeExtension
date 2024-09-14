@@ -55,9 +55,19 @@ body.loaded {
     color: #34495e;
 }
 
-cite {
-    font-style: normal;
-    font-weight: bold;
+.quote-source {
+    margin-top: 20px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.source-text, .chapter-verse {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+cite, .quote-source {
+    font-style: italic;
     color: #7f8c8d;
 }
 
