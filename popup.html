@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="dark-mode-toggle"></div>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
     <div class="clock" id="clock"></div>
     <div class="container">
         <div class="quote-container">
@@ -15,6 +21,10 @@
             <blockquote id="english-quote"></blockquote>
             - Bhagavad Gita
         </div>
+    </div>
+    <div class="recent-sites-container">
+        <h2>Recently Opened Sites</h2>
+        <div id="recent-sites" class="recent-sites"></div>
     </div>
     <script src="script.js"></script>
 </body>

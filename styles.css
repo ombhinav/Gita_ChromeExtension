@@ -1,12 +1,18 @@
-body, html {
+html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f4f8;
     color: #2c3e50;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    min-height: 100vh;
 }
 
 body.loaded {
@@ -14,22 +20,21 @@ body.loaded {
 }
 
 .container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     padding: 20px;
     box-sizing: border-box;
-    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
 }
 
-.quote-container {
+.quote-container, .recent-sites-container {
     max-width: 800px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 40px;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease-in-out;
 }
@@ -68,6 +73,168 @@ cite {
     max-width:230px;
     padding: 10px 20px;
     padding-top: 0px;
-    border-radius: 5px;
+    border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recent-sites-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-top: 5px;
+    padding-bottom: 15px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* Push to the bottom if content is short */
+}
+
+.recent-sites-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.recent-sites {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.site-item {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.site-item:hover {
+    transform: translateY(-3px);
+}
+
+.site-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.site-item span {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #34495e;
+    vertical-align: middle;
+}
+
+/* Dark mode toggle styles */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Dark mode styles (update and add new styles) */
+body.dark-mode {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #e1e1e1;
+}
+
+body.dark-mode .quote-container,
+body.dark-mode .recent-sites-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .clock {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #e1e1e1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .site-item {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .site-item:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode #sanskrit-quote,
+body.dark-mode #english-quote {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .quote-container,
+body.dark-mode .recent-sites-container h2,
+body.dark-mode .recent-sites-container,
+body.dark-mode .clock,
+body.dark-mode #sanskrit-quote,
+body.dark-mode #english-quote,
+body.dark-mode .site-item span {
+    color: #ffffff; /* Ensure all text elements are white in dark mode */
 }

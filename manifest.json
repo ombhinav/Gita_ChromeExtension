@@ -1,10 +1,17 @@
 {
-    "manifest_version": 2,
-    "name": "Current Time New Tab",
-    "version": "1.0",
-    "description": "Displays current time and custom text on new tab",
-    "chrome_url_overrides": {
-      "newtab": "popup.html"
-    },
-    "permissions": ["storage"]
+  "manifest_version": 2,
+  "name": "Current Time New Tab",
+  "version": "1.0",
+  "description": "Displays current time and custom text on new tab",
+  "chrome_url_overrides": {
+    "newtab": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "history" 
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
   }
+}

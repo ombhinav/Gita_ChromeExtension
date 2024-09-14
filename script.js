@@ -7,6 +7,19 @@ function updateTime() {
     document.getElementById('clock').textContent = timeString;
 }
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+}
+
+function loadDarkModePreference() {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').checked = true;
+    }
+}
+
 function getRandomQuote() {
     const quotes = [
         {
@@ -39,8 +52,42 @@ function setQuote() {
     document.getElementById('english-quote').textContent = quote.english;
 }
 
+function getRecentSites() {
+    // This is a mock function. In a real extension, you would use the Chrome extension API
+    // to get the actual recently visited sites.
+    return [
+        { url: 'https://www.google.com', title: 'Google', favicon: 'https://www.google.com/favicon.ico' },
+        { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://www.youtube.com/favicon.ico' },
+        { url: 'https://www.github.com', title: 'GitHub', favicon: 'https://github.com/favicon.ico' },
+        { url: 'https://www.stackoverflow.com', title: 'Stack Overflow', favicon: 'https://stackoverflow.com/favicon.ico' },
+    ];
+}
+
+function displayRecentSites() {
+    const recentSites = getRecentSites();
+    const recentSitesContainer = document.getElementById('recent-sites');
+
+    recentSites.forEach(site => {
+        const siteElement = document.createElement('div');
+        siteElement.className = 'site-item';
+        siteElement.innerHTML = `
+            <img src="${site.favicon}" alt="${site.title} favicon">
+            <span>${site.title}</span>
+        `;
+        siteElement.addEventListener('click', () => {
+            window.open(site.url, '_blank');
+        });
+        recentSitesContainer.appendChild(siteElement);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setQuote();
     updateTime();
     setInterval(updateTime, 1000);
+    displayRecentSites();
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('change', toggleDarkMode);
+    loadDarkModePreference();
 });
