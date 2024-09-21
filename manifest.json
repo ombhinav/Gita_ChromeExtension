@@ -12,5 +12,19 @@
   ],
   "background": {
     "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "feather.png",
+      "32": "feather.png",
+      "48": "feather.png",
+      "128": "feather.png"
+    }
+  },
+  "icons": {
+    "16": "feather.png",
+    "32": "feather.png",
+    "48": "feather.png",
+    "128": "feather.png"
   }
 }
