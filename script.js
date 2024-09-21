@@ -54,7 +54,7 @@ function getRandomQuote() {
         },
         {
             sanskrit: "मात्रास्पर्शास्तु कौन्तेय शीतोष्णसुखदुःखदाः।",
-            english: "O son of Kunti, the nonpermanent appearance of happiness and distress, and their disappearance in due course, are like the appearance and disappearance of winter and summer seasons.",
+            english: "O son of Kunti, the sensations of cold, heat, pleasure, and pain are temporary; therefore, endure them.",
             chapter: 2,
             verse: 14
         },
@@ -155,14 +155,8 @@ function getRandomQuote() {
             verse: 14
         },
         {
-            sanskrit: "कर्म ब्रह्मोद्भवं विद्धि ब्रह्माक्षरसमुद्भवम्।",
-            english: "You should understand that all species of life, O Arjuna, are made possible by birth in this material nature, and that I am the seed-giving father.",
-            chapter: 14,
-            verse: 3
-        },
-        {
             sanskrit: "मम योनिर्महद्ब्रह्म तस्मिन्गर्भं दधाम्यहम्।",
-            english: "It should be understood that all species of life, O son of Kunti, are made possible by birth in this material nature, and that I am the seed-giving father.",
+            english: "It should be understood that all species of life, are made possible by birth in this material nature, and that I am the seed-giving father.",
             chapter: 14,
             verse: 4
         },
@@ -266,10 +260,10 @@ function getRecentSites() {
     // This is a mock function. In a real extension, you would use the Chrome extension API
     // to get the actual recently visited sites.
     return [
-        { url: 'https://www.google.com', title: 'Google', favicon: 'https://www.google.com/favicon.ico' },
-        { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://www.youtube.com/favicon.ico' },
-        { url: 'https://www.github.com', title: 'GitHub', favicon: 'https://github.com/favicon.ico' },
-        { url: 'https://www.stackoverflow.com', title: 'Stack Overflow', favicon: 'https://stackoverflow.com/favicon.ico' },
+        { url: 'https://www.vtop.ac.in', title: 'Vitian', favicon: 'https://vtop.vit.ac.in/favicon.ico' },
+        { url: 'https://www.gmail.com', title: 'Gmail', favicon: 'gmail_favicon.png' },
+        { url: 'https://web.whatsapp.com/', title: 'WhatsApp', favicon: 'https://web.whatsapp.com/favicon.ico' },
+        { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
     ];
 }
 
