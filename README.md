@@ -21,7 +21,7 @@ Gita Gems is a Chrome extension that enriches your browsing experience by displa
 1.  Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/gita-gems.git
+   git clone https://github.com/ombhinav/gita-gems.git
   ```
 2.	Navigate to the directory:
    ```bash
