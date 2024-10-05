@@ -10,11 +10,6 @@ Gita Gems is a Chrome extension that enriches your browsing experience by displa
 - **Dark Mode**: Toggle between light and dark themes for comfortable reading.
 - **Preferences Storage**: Stores user preferences using Chrome local storage for a personalized experience.
 
-## Tech Stack
-
-- **Frontend**: React.js, Tailwind CSS
-- **Backend**: Supabase (for fetching Bhagavad Gita lessons)
-- **Storage**: Chrome local storage
 
 ## Installation
 
