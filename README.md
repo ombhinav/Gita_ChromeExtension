@@ -13,10 +13,12 @@ Gita Gems is a Chrome extension that enriches your browsing experience by displa
 ## Preview
 
 - Light Mode
-  <img width="1468" alt="image" src="https://github.com/user-attachments/assets/b9891cf8-6b17-4f9e-884c-9e27270c4003">
+<img width="1464" alt="image" src="https://github.com/user-attachments/assets/b021202c-951a-42b5-bb25-1a3afb46b107">
+
 
 - Dark Mode
-  <img width="1463" alt="image" src="https://github.com/user-attachments/assets/4efb36df-dac4-4acf-89e1-0beb01c47ac1">
+<img width="1461" alt="image" src="https://github.com/user-attachments/assets/d81e68a8-a97e-4348-88a4-bfec4a8d17a6">
+
 
 
 
