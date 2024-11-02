@@ -10,6 +10,16 @@ Gita Gems is a Chrome extension that enriches your browsing experience by displa
 - **Dark Mode**: Toggle between light and dark themes for comfortable reading.
 - **Preferences Storage**: Stores user preferences using Chrome local storage for a personalized experience.
 
+## Preview
+
+- Light Mode
+  <img width="1468" alt="image" src="https://github.com/user-attachments/assets/b9891cf8-6b17-4f9e-884c-9e27270c4003">
+
+- Dark Mode
+  <img width="1463" alt="image" src="https://github.com/user-attachments/assets/4efb36df-dac4-4acf-89e1-0beb01c47ac1">
+
+
+
 
 ## Installation
 
