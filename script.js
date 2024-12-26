@@ -267,6 +267,15 @@ function getRecentSites() {
     ];
 }
 
+function getButtons(){
+    return[
+        { color: 'red', css: 'background: linear-gradient(135deg,rgb(232, 177, 139) 0%,rgb(238, 75, 60) 100%);'},
+        { color: 'blue'},
+        { color: 'yellow'},
+        { color: 'green'},
+    ];
+}
+
 function displayRecentSites() {
     const recentSites = getRecentSites();
     const recentSitesContainer = document.getElementById('recent-sites');
@@ -285,11 +294,27 @@ function displayRecentSites() {
     });
 }
 
+function displayColorButtons(){
+    const buttonElementContainer = document.getElementById('recent-sites');
+    const buttonElement = document.createElement('div');
+    buttonElement.className = 'button-item';
+    buttonElement.innerHTML=`
+    <button id="colorChangeButton"> Click Me</button>
+    `;
+    buttonElementContainer.appendChild(buttonElement);
+    const colorChangeButton = document.getElementById('colorChangeButton');
+    colorChangeButton.addEventListener('click',() =>{
+        document.body.style.background = "linear-gradient(135deg, rgb(232, 177, 139) 0%, rgb(238, 75, 60) 100%)";
+    });
+    
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     setQuote();
     updateTime();
     setInterval(updateTime, 1000);
     displayRecentSites();
+    displayColorButtons();
 
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('change', toggleDarkMode);
