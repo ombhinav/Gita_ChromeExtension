@@ -257,7 +257,7 @@ function setQuote() {
 
 
 function getRecentSites() {
-    // This is a mock function. In a real extension, you would use the Chrome extension API
+    // This is a mock function. In a real extension, we would use the Chrome extension API
     // to get the actual recently visited sites.
     return [
         { url: 'https://www.vtop.ac.in', title: 'Vitian', favicon: 'https://vtop.vit.ac.in/favicon.ico' },
@@ -269,10 +269,12 @@ function getRecentSites() {
 
 function getButtons(){
     return[
-        { color: 'red', css: 'background: linear-gradient(135deg,rgb(232, 177, 139) 0%,rgb(238, 75, 60) 100%);'},
-        { color: 'blue'},
-        { color: 'yellow'},
-        { color: 'green'},
+        // { color: 'Red', css: 'linear-gradient(135deg, rgb(232, 177, 139) 0%, rgb(238, 75, 60) 100%)' },
+        { color: 'Red', css: 'linear-gradient(to right, #ff0084, #33001b)' },
+        { color: 'Blue', css: 'linear-gradient(135deg, rgb(139, 177, 232) 0%, rgb(60, 75, 238) 100%)' },
+        { color: 'Yellow', css: 'linear-gradient(135deg, rgb(216, 216, 116) 0%, rgb(137, 164, 16) 100%)' },
+        { color: 'Green', css: 'linear-gradient(135deg, rgb(139, 232, 177) 0%, rgb(60, 238, 75) 100%)' },
+        { color: 'Default', css: 'linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%)' },
     ];
 }
 
@@ -294,20 +296,27 @@ function displayRecentSites() {
     });
 }
 
+
+
 function displayColorButtons(){
+    const colorInfo = getButtons();
     const buttonElementContainer = document.getElementById('recent-sites');
-    const buttonElement = document.createElement('div');
-    buttonElement.className = 'button-item';
-    buttonElement.innerHTML=`
-    <button id="colorChangeButton"> Click Me</button>
-    `;
-    buttonElementContainer.appendChild(buttonElement);
-    const colorChangeButton = document.getElementById('colorChangeButton');
-    colorChangeButton.addEventListener('click',() =>{
-        document.body.style.background = "linear-gradient(135deg, rgb(232, 177, 139) 0%, rgb(238, 75, 60) 100%)";
+    colorInfo.forEach(info => {
+        const buttonElement = document.createElement('div');
+        buttonElement.className = 'button-item';
+        buttonElement.innerHTML=`
+        <button id="colorChange${info.color}"> Click ${info.color}</button>
+        `;
+        buttonElementContainer.appendChild(buttonElement);
+
+        const colorChangeButton = document.getElementById(`colorChange${info.color}`);
+        colorChangeButton.addEventListener('click',() =>{
+            document.body.style.background = info.css;
+        });
+
     });
-    
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     setQuote();
@@ -315,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     displayRecentSites();
     displayColorButtons();
+    // displayDefaultButtons();
 
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('change', toggleDarkMode);
