@@ -269,12 +269,15 @@ function getRecentSites() {
 
 function getButtons(){
     return[
-        // { color: 'Red', css: 'linear-gradient(135deg, rgb(232, 177, 139) 0%, rgb(238, 75, 60) 100%)' },
+       
         { color: 'Red', css: 'linear-gradient(to right, #ff0084, #33001b)' },
-        { color: 'Blue', css: 'linear-gradient(135deg, rgb(139, 177, 232) 0%, rgb(60, 75, 238) 100%)' },
+        { color: 'Blue', css: 'radial-gradient( circle 382px at 50% 50.2%,  rgba(73,76,212,1) 0.1%, rgba(3,1,50,1) 100.2% )' },
         { color: 'Yellow', css: 'linear-gradient(135deg, rgb(216, 216, 116) 0%, rgb(137, 164, 16) 100%)' },
-        { color: 'Green', css: 'linear-gradient(135deg, rgb(139, 232, 177) 0%, rgb(60, 238, 75) 100%)' },
+        { color: 'Green', css: 'radial-gradient( circle farthest-corner at 96.1% 7.2%,  rgba(9,178,62,1) 0%, rgba(19,19,19,1) 100.2% )' },
+        { color: 'Dark', css: 'radial-gradient( circle 710px at 5.2% 7.2%,  rgba(37,89,222,1) 0%, rgba(37,89,222,1) 7.5%, rgba(4,4,29,1) 44.7% )'},
         { color: 'Default', css: 'linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%)' },
+        { color: 'Pink', css: 'radial-gradient( circle farthest-corner at 3.2% 49.6%,  rgba(80,12,139,0.87) 0%, rgba(161,10,144,0.72) 83.6% )'},
+        
     ];
 }
 
