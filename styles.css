@@ -34,6 +34,7 @@ body.loaded {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px;
+    margin-top: 150px;
     border-radius: 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: opacity 0.5s ease-in-out;
@@ -81,10 +82,8 @@ cite, .quote-source {
     background-color: rgba(255, 255, 255, 0.8);
     min-width: 160px;
     max-width:160px;
-    /* padding: 8px 20px; */
     padding-left: 35px;
     padding-bottom: 10px;
-    /* padding-right: 0px; */
     padding-top: 0px;
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -101,7 +100,7 @@ cite, .quote-source {
     padding-top: 0px;
     padding-bottom: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    margin-top: auto; /* Push to the bottom if content is short */
+    margin-top: auto; /* Pushing to the bottom if content short */
 }
 
 .recent-sites-container h2 {
@@ -148,7 +147,8 @@ cite, .quote-source {
     vertical-align: middle;
 }
 
-/* Dark mode toggle styles */
+/* dark mode styles*/
+
 .dark-mode-toggle {
     position: fixed;
     top: 20px;
@@ -209,7 +209,7 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Dark mode styles (update and add new styles) */
+
 body.dark-mode {
     background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
     color: #e1e1e1;
@@ -253,5 +253,46 @@ body.dark-mode .clock,
 body.dark-mode #sanskrit-quote,
 body.dark-mode #english-quote,
 body.dark-mode .site-item span {
-    color: #ffffff; /* Ensure all text elements are white in dark mode */
+    color: #ffffff;
 }
+
+.dropbtn {  
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+.dropdown {
+    margin-left: auto;
+    margin-right: 5%;
+    margin-bottom: 5%;
+   
+    position: relative;
+    display: inline-block;
+}
+
+.theme-container {
+    max-width: 700px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+}
+
+#inside_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px; 
+    background-color: #e8e8e8;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none; 
+    width: auto;
+    max-width: 90%;
+}
+
