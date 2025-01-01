@@ -281,7 +281,7 @@ body.dark-mode .site-item span {
     transition: opacity 0.5s ease-in-out;
 }
 
-#inside_box {
+#insideBox {
     position: fixed;
     top: 50%;
     left: 50%;

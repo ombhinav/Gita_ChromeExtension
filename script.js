@@ -97,11 +97,21 @@ function displayColorButtons(){
 
 //window.openpop because , we have used type as module, which treats
 //all the files as modules leaving scope, so we had to define this syntax
-window.openPop = function openPop() {
-    const popDialog = document.getElementById("inside_box")
+
+//had to comment, due to inline javascript attack
+// window.openPop = function openPop() {
+//     const popDialog = document.getElementById("inside_box")
+//     popDialog.style.display =
+//       popDialog.style.display === "block" ? "none" : "block"
+// }
+
+document.getElementById('themeButton').addEventListener('click',() => {
+    const popDialog = document.getElementById("insideBox")
     popDialog.style.display =
       popDialog.style.display === "block" ? "none" : "block"
-}
+
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
     setQuote();
