@@ -78,10 +78,10 @@ function displayRecentSites() {
 
 function displayColorButtons(){
     const colorInfo = getButtons();
-    const buttonElementContainer = document.getElementById('recent-sites');
+    const buttonElementContainer = document.getElementById('insideBox');
     colorInfo.forEach(info => {
         const buttonElement = document.createElement('div');
-        buttonElement.className = 'site-item';
+        buttonElement.className = 'insideButton';
         buttonElement.innerHTML=`
         <button id="colorChange${info.color}"> Click ${info.color}</button>
         `;
