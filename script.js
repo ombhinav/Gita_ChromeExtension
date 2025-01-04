@@ -68,7 +68,7 @@ function displayRecentSites() {
             <span>${site.title}</span>
         `;
         siteElement.addEventListener('click', () => {
-            window.open(site.url, '_blank');
+            window.location.href = site.url;
         });
         recentSitesContainer.appendChild(siteElement);
     });
