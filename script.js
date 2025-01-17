@@ -31,16 +31,47 @@ function setQuote() {
 }
 
 
+
+// function getRecentSites() {
+//     // Mock function. In a real extension, we would use the Chrome extension API
+//     // to get the actual recently visited sites.
+
+//     if(chrome.topSites){
+//         chrome.topSites.get((topSites) => {
+//             topSites.slice(0,5).forEach((site) =>{
+                
+//             })
+//         })
+//     }
+    
+//     return [
+//         { url: 'https://www.vtop.ac.in', title: 'Vitian', favicon: 'https://vtop.vit.ac.in/favicon.ico' },
+//         { url: 'https://www.gmail.com', title: 'Gmail', favicon: 'gmail_favicon.png' },
+//         { url: 'https://web.whatsapp.com/', title: 'WhatsApp', favicon: 'https://web.whatsapp.com/favicon.ico' },
+//         { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
+//         { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
+//     ];
+// }
+
 function getRecentSites() {
-    // Mock function. In a real extension, we would use the Chrome extension API
-    // to get the actual recently visited sites.
-    return [
-        { url: 'https://www.vtop.ac.in', title: 'Vitian', favicon: 'https://vtop.vit.ac.in/favicon.ico' },
-        { url: 'https://www.gmail.com', title: 'Gmail', favicon: 'gmail_favicon.png' },
-        { url: 'https://web.whatsapp.com/', title: 'WhatsApp', favicon: 'https://web.whatsapp.com/favicon.ico' },
-        { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
-    ];
+    return new Promise((resolve, reject) => {
+        if (chrome.topSites) {
+            chrome.topSites.get((topSites) => {
+                // Limit to top 5 sites
+                const sites = topSites.slice(0, 5).map((site) => ({
+                    url: site.url,
+                    title: site.title,
+                    favicon: `https://www.google.com/s2/favicons?domain=${site.url}`, // Using a dynamic favicon URL
+                }));
+                resolve(sites); // Return the sites array
+            });
+        } else {
+            reject(new Error('chrome.topSites API is not available.'));
+        }
+    });
 }
+
+
 
 function getButtons(){
     return[
@@ -56,23 +87,47 @@ function getButtons(){
     ];
 }
 
-function displayRecentSites() {
-    const recentSites = getRecentSites();
-    const recentSitesContainer = document.getElementById('recent-sites');
+// function displayRecentSites() {
+//     const recentSites = getRecentSites();
+//     const recentSitesContainer = document.getElementById('recent-sites');
 
-    recentSites.forEach(site => {
-        const siteElement = document.createElement('div');
-        siteElement.className = 'site-item';
-        siteElement.innerHTML = `
-            <img src="${site.favicon}" alt="${site.title} favicon">
-            <span>${site.title}</span>
-        `;
-        siteElement.addEventListener('click', () => {
-            window.location.href = site.url;
+//     recentSites.forEach(site => {
+//         const siteElement = document.createElement('div');
+//         siteElement.className = 'site-item';
+//         siteElement.innerHTML = `
+//             <img src="${site.favicon}" alt="${site.title} favicon">
+//             <span>${site.title}</span>
+//         `;
+//         siteElement.addEventListener('click', () => {
+//             window.location.href = site.url;
+//         });
+//         recentSitesContainer.appendChild(siteElement);
+//     });
+// }
+
+async function displayRecentSites() {
+    try {
+        const recentSites = await getRecentSites();  // Await the promise to get the sites
+        const recentSitesContainer = document.getElementById('recent-sites');
+
+        // Loop through the recent sites and create the UI
+        recentSites.forEach(site => {
+            const siteElement = document.createElement('div');
+            siteElement.className = 'site-item';
+            siteElement.innerHTML = `
+                <img src="${site.favicon}" alt="${site.title} favicon">
+                <span>${site.title}</span>
+            `;
+            siteElement.addEventListener('click', () => {
+                window.location.href = site.url;
+            });
+            recentSitesContainer.appendChild(siteElement);
         });
-        recentSitesContainer.appendChild(siteElement);
-    });
+    } catch (error) {
+        console.error("Error fetching recent sites:", error);
+    }
 }
+
 
 
 
