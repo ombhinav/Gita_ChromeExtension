@@ -56,7 +56,7 @@ function getRecentSites() {
 
 function getButtons(){
     return[
-       
+        { color: 'Original', css: 'linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%)' }, // Added original theme
         { color: 'Red', css: 'linear-gradient(147deg, #e0455f 0%, #44000b 74%)' },
         { color: 'Blue', css: 'linear-gradient(315deg, #090947 0%, #5a585a 74%)' },
         { color: 'Yellow', css: 'linear-gradient(315deg, #d2a813 0%, #000000 74%)' },
@@ -92,11 +92,6 @@ async function displayRecentSites() {
     }
 }
 
-
-
-
-
-
 function displayColorButtons() {
     const colorInfo = getButtons();
     const buttonElementContainer = document.getElementById('insideBox');
@@ -121,8 +116,16 @@ function displayColorButtons() {
         colorPreview.className = 'color-preview';
         colorPreview.style.background = info.css;
         
+        // Add a border for the Original theme to make it visible
+        if (info.color === 'Original') {
+            colorPreview.style.border = '2px solid #ccc';
+        }
+        
         // Mark active theme
         if (currentTheme === info.color) {
+            colorPreview.classList.add('active');
+        } else if (currentTheme === '' && info.color === 'Original') {
+            // If no theme is set, mark Original as active
             colorPreview.classList.add('active');
         }
         
@@ -146,12 +149,20 @@ function displayColorButtons() {
             // Add active class to selected preview
             colorPreview.classList.add('active');
             
-            // Apply theme
-            document.body.style.background = info.css;
-            
-            // Save theme preference
-            localStorage.setItem('selectedTheme', info.color);
-            localStorage.setItem('themeCSS', info.css);
+            if (info.color === 'Original') {
+                // Clear the background style to revert to the original CSS background
+                document.body.style.background = '';
+                // Remove the stored theme
+                localStorage.removeItem('selectedTheme');
+                localStorage.removeItem('themeCSS');
+            } else {
+                // Apply theme
+                document.body.style.background = info.css;
+                
+                // Save theme preference
+                localStorage.setItem('selectedTheme', info.color);
+                localStorage.setItem('themeCSS', info.css);
+            }
         });
     });
     
@@ -165,8 +176,8 @@ function displayColorButtons() {
     buttonElementContainer.addEventListener('click', (e) => {
         e.stopPropagation();
     });
-
 }
+
 
 function setupDocumentClickHandler() {
     document.addEventListener('click', () => {

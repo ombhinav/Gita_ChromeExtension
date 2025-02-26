@@ -94,55 +94,56 @@ cite, .quote-source {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50%;
-    max-width: 800px;
+    width: 40%; /* Reduced from 50% */
+    max-width: 600px; /* Reduced from 800px */
     background-color: rgba(255, 255, 255, 0.8);
     padding-top: 0px;
-    padding-bottom: 15px;
+    padding-bottom: 10px; /* Reduced from 15px */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    margin-top: auto; /* Pushing to the bottom if content short */
+    margin-top: auto;
 }
 
 .recent-sites-container h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+    font-size: 1rem; /* Reduced from 1.3rem */
     color: #2c3e50;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced from 15px */
     text-align: center;
-    padding-bottom: 0px ;
+    padding-bottom: 0px;
 }
 
 .recent-sites {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 5px;
+    gap: 15px; /* Reduced from 20px */
+    padding-bottom: 3px; /* Reduced from 5px */
 }
 
 .site-item {
     background-color: #fff;
     border-radius: 5px;
-    padding: 8px 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 6px 8px; /* Reduced from 8px 12px */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
 }
+
 
 .site-item:hover {
     transform: translateY(-3px);
 }
 
 .site-item img {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+    width: 12px; /* Reduced from 16px */
+    height: 12px; /* Reduced from 16px */
+    margin-right: 6px;
     vertical-align: middle;
 }
 
 .site-item span {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* Reduced from 0.8rem */
     color: #34495e;
     vertical-align: middle;
 }
