@@ -32,26 +32,7 @@ function setQuote() {
 
 
 
-// function getRecentSites() {
-//     // Mock function. In a real extension, we would use the Chrome extension API
-//     // to get the actual recently visited sites.
 
-//     if(chrome.topSites){
-//         chrome.topSites.get((topSites) => {
-//             topSites.slice(0,5).forEach((site) =>{
-                
-//             })
-//         })
-//     }
-    
-//     return [
-//         { url: 'https://www.vtop.ac.in', title: 'Vitian', favicon: 'https://vtop.vit.ac.in/favicon.ico' },
-//         { url: 'https://www.gmail.com', title: 'Gmail', favicon: 'gmail_favicon.png' },
-//         { url: 'https://web.whatsapp.com/', title: 'WhatsApp', favicon: 'https://web.whatsapp.com/favicon.ico' },
-//         { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
-//         { url: 'https://www.youtube.com', title: 'YouTube', favicon: 'https://youtube.com/favicon.ico' },
-//     ];
-// }
 
 function getRecentSites() {
     return new Promise((resolve, reject) => {
@@ -87,23 +68,6 @@ function getButtons(){
     ];
 }
 
-// function displayRecentSites() {
-//     const recentSites = getRecentSites();
-//     const recentSitesContainer = document.getElementById('recent-sites');
-
-//     recentSites.forEach(site => {
-//         const siteElement = document.createElement('div');
-//         siteElement.className = 'site-item';
-//         siteElement.innerHTML = `
-//             <img src="${site.favicon}" alt="${site.title} favicon">
-//             <span>${site.title}</span>
-//         `;
-//         siteElement.addEventListener('click', () => {
-//             window.location.href = site.url;
-//         });
-//         recentSitesContainer.appendChild(siteElement);
-//     });
-// }
 
 async function displayRecentSites() {
     try {
@@ -131,24 +95,97 @@ async function displayRecentSites() {
 
 
 
-function displayColorButtons(){
+
+
+function displayColorButtons() {
     const colorInfo = getButtons();
     const buttonElementContainer = document.getElementById('insideBox');
+    
+    // Clear existing content
+    buttonElementContainer.innerHTML = `
+        <h6>Choose Your Theme</h6>
+        <button class="close-btn" id="closeThemeBox">&times;</button>
+        <div class="theme-grid" id="themeGrid"></div>
+    `;
+    
+    const themeGrid = document.getElementById('themeGrid');
+    
+    // Get currently active theme
+    const currentTheme = localStorage.getItem('selectedTheme') || '';
+    
     colorInfo.forEach(info => {
-        const buttonElement = document.createElement('div');
-        buttonElement.className = 'insideButton';
-        buttonElement.innerHTML=`
-        <button id="colorChange${info.color}"> Click ${info.color}</button>
-        `;
-        buttonElementContainer.appendChild(buttonElement);
-
-        const colorChangeButton = document.getElementById(`colorChange${info.color}`);
-        colorChangeButton.addEventListener('click',() =>{
+        const themeItem = document.createElement('div');
+        themeItem.className = 'theme-item';
+        
+        const colorPreview = document.createElement('div');
+        colorPreview.className = 'color-preview';
+        colorPreview.style.background = info.css;
+        
+        // Mark active theme
+        if (currentTheme === info.color) {
+            colorPreview.classList.add('active');
+        }
+        
+        const themeName = document.createElement('div');
+        themeName.className = 'theme-name';
+        themeName.textContent = info.color;
+        
+        themeItem.appendChild(colorPreview);
+        themeItem.appendChild(themeName);
+        themeGrid.appendChild(themeItem);
+        
+        colorPreview.addEventListener('click', (e) => {
+            // Prevent the click from propagating to document
+            e.stopPropagation();
+            
+            // Remove active class from all previews
+            document.querySelectorAll('.color-preview').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to selected preview
+            colorPreview.classList.add('active');
+            
+            // Apply theme
             document.body.style.background = info.css;
+            
+            // Save theme preference
+            localStorage.setItem('selectedTheme', info.color);
+            localStorage.setItem('themeCSS', info.css);
         });
+    });
+    
+    // Add close button functionality
+    document.getElementById('closeThemeBox').addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from reaching document
+        buttonElementContainer.style.display = 'none';
+    });
+    
+    // Make the insideBox itself stop propagation to prevent closing when clicking on the box
+    buttonElementContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
+}
+
+function setupDocumentClickHandler() {
+    document.addEventListener('click', () => {
+        const themeBox = document.getElementById('insideBox');
+        if (themeBox.style.display === 'block') {
+            themeBox.style.display = 'none';
+        }
     });
 }
+
+function loadThemePreference() {
+    const selectedTheme = localStorage.getItem('selectedTheme');
+    const themeCSS = localStorage.getItem('themeCSS');
+    
+    if (selectedTheme && themeCSS) {
+        document.body.style.background = themeCSS;
+    }
+}
+
 
 //window.openpop because , we have used type as module, which treats
 //all the files as modules leaving scope, so we had to define this syntax
@@ -160,11 +197,10 @@ function displayColorButtons(){
 //       popDialog.style.display === "block" ? "none" : "block"
 // }
 
-document.getElementById('themeButton').addEventListener('click',() => {
-    const popDialog = document.getElementById("insideBox")
-    popDialog.style.display =
-      popDialog.style.display === "block" ? "none" : "block"
-
+document.getElementById('themeButton').addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent the click from immediately closing the box
+    const popDialog = document.getElementById("insideBox");
+    popDialog.style.display = popDialog.style.display === "block" ? "none" : "block";
 });
 
 
@@ -174,10 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 1000);
     displayRecentSites();
     displayColorButtons();
+    setupDocumentClickHandler();
     
     
     const darkModeToggle = document.getElementById('darkModeToggle');
     darkModeToggle.addEventListener('change', toggleDarkMode);
     loadDarkModePreference();
+    loadThemePreference();
 });
 
